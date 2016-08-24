@@ -22,3 +22,8 @@ table {
 div#selectors {
   float:left;
 }
+
+th#spacer {
+  width:50px !important;
+  border:none !important;
+}
