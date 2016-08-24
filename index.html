@@ -25,11 +25,11 @@
           <table class="input-grid">
             <tr>
               <th align="right">Class Name:</th>
-              <td><input type="text" id="classname" maxlength="14"/></td>
+              <td><input disabled="true" type="text" id="classname" maxlength="14"/></td>
             </tr>
             <tr>
               <th align="right">Location:</th>
-              <td><input type="text" id="location" maxlength="6"/></td>
+              <td><input disabled="true" type="text" id="location" maxlength="6"/></td>
             </tr>
           </table>
         </div>
@@ -38,14 +38,14 @@
             <tr>
               <th align="right">Start Time:</th>
               <td id="start-time-cell">
-                <select id="start-time-select">
+                <select disabled="true" id="start-time-select">
                 </select>
               </td>
             </tr>
             <tr>
               <th align="right">End Time:</th>
               <td>
-                <select id="end-time-select">
+                <select disabled="true" id="end-time-select">
                 </select>
               </td>
             </tr>
@@ -58,6 +58,7 @@
           <script src="jscolor.min.js"></script>
 
           <b>Color:</b> <input class="jscolor" value="ab2567">
+          <button id="submit" disabled="true">Save</button>
         </div>
 
       </div>
