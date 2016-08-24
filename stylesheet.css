@@ -25,9 +25,10 @@ div#selectors {
   margin-left: 10px
 }
 
-table#table > td:hover {
+td.timeslot:hover {
   border: 1px solid #111111
 }
+
 
 th#spacer {
   width:50px !important;
@@ -37,7 +38,17 @@ th#spacer {
 div.option-panel {
   width: 450px;
   border: 1px solid #111111;
+  border-top: none !important;
   padding: 5px;
+}
+
+div.option-panel#panel-1 {
+  border-top: 1px solid #111111 !important;
+}
+
+#panel-3 > div {
+  padding: 2px;
+  float: left;
 }
 
 th.right {

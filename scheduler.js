@@ -1,3 +1,7 @@
+var letters = ["A", "B", "C", "D", "E", "F"]
+var hex = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
+           "A", "B", "C", "D", "E", "F"]
+var dayBoxes = new Array(6)
 
 // Creates schedule table
 for (var i = 0; i < 32; i++) {
@@ -31,11 +35,24 @@ for (var i = 0; i < 32; i++) {
   soption.value = i
   eoption.value = i+(2/3)
 
+  if (i === 3) {
+    eoption.selected = "selected"
+  }
+
   soption.innerHTML = toTime(i)
   eoption.innerHTML = toTime(i+(2/3))
 
   startTimeSelect.appendChild(soption)
   endTimeSelect.appendChild(eoption)
+}
+
+for (var i = 0; i < 6; i++) {
+  var div = document.createElement("div")
+  dayBoxes[i] = document.createElement("input")
+  dayBoxes[i].type = "checkbox"
+  div.appendChild(dayBoxes[i])
+  div.innerHTML = div.innerHTML + " <b>" + letters[i] + "</b>"
+  document.getElementById("panel-3").appendChild(div)
 }
 
 function toTime(period) {
@@ -45,4 +62,13 @@ function toTime(period) {
     leftside = '00'
   }
   return Math.floor(min / 60) + ":" + leftside
+}
+
+var color = ""
+for (var i = 0; i < 6; i++) {
+  color = color + hex[Math.floor(Math.random() * 16)]
+}
+var el = document.getElementsByClassName("jscolor")
+for (var i = 0; i < el.length; i++) {
+  el[i].value = color
 }
