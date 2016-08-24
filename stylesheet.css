@@ -14,16 +14,32 @@ tr.time-period > th {
   border-right: 2px solid #111111
 }
 
-table {
+table#table {
   border-collapse: collapse;
-  border:2px solid #111111
+  border:2px solid #111111;
+  float: left;
 }
 
 div#selectors {
   float:left;
+  margin-left: 10px
+}
+
+table#table > td:hover {
+  border: 1px solid #111111
 }
 
 th#spacer {
   width:50px !important;
   border:none !important;
+}
+
+div.option-panel {
+  width: 450px;
+  border: 1px solid #111111;
+  padding: 5px;
+}
+
+th.right {
+  text-align:right;
 }
