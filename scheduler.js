@@ -25,6 +25,21 @@ for (var i = 0; i < 32; i++) {
   }
 }
 
+document.addEventListener('click', function(e) {
+  var id = event.target.id
+  if (id.indexOf("timeslot") !== -1) {
+    var period, day;
+    if (id.charAt(10) === "-") {
+      period = parseInt(id.charAt(9))
+      day = parseInt(id.charAt(11))
+    } else {
+      period = parseInt(10 * id.charAt(9)) + parseInt(id.charAt(10))
+      day = parseInt(id.charAt(12))
+    }
+    console.log(period + " " + day)
+  }
+}, false)
+
 var startTimeSelect = document.getElementById("start-time-select")
 var endTimeSelect = document.getElementById("end-time-select")
 
@@ -64,11 +79,18 @@ function toTime(period) {
   return Math.floor(min / 60) + ":" + leftside
 }
 
-var color = ""
-for (var i = 0; i < 6; i++) {
-  color = color + hex[Math.floor(Math.random() * 16)]
+newColor();
+function newColor() {
+  var color = ""
+  for (var i = 0; i < 6; i++) {
+    color = color + hex[Math.floor(Math.random() * 16)]
+  }
+  var el = document.getElementsByClassName("jscolor")
+  for (var i = 0; i < el.length; i++) {
+    el[i].value = color
+  }
 }
-var el = document.getElementsByClassName("jscolor")
-for (var i = 0; i < el.length; i++) {
-  el[i].value = color
+
+function loadData(day) {
+  console.log(day)
 }
