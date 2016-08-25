@@ -7,7 +7,9 @@ var hex = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
 var dayBoxes = new Array(6)
 var classList = [];
 
-setInterval(reload, 200);
+setInterval(reload, 1000);
+
+var selClass = undefined;
 
 
 function Class(name, location, days, color, startTime, endTime) {
@@ -21,8 +23,8 @@ function Class(name, location, days, color, startTime, endTime) {
   this.timeSlots = function() {
     var timeSlotList = [];
     for (var i = 0; i < days.length; i++){
-      for (var j = startTime; j <= endTime; j++) {
-        timeSlotList.splice(0, 0, document.getElementById("timeslot-" + days[i] + "-" + j))
+      for (var j = startTime; j < endTime; j++) {
+        timeSlotList.splice(0, 0, document.getElementById("timeslot-" + j + "-" + days[i]))
       }
     }
     return timeSlotList
@@ -35,19 +37,24 @@ function reload() {
   for (var i = 0; i < 32; i++) {
     for (var j = 0; j < 6; j++) {
       if (i % 2 == 0) {
-        document.getElementById("timeslot-" + i + "-" + j).style.backgroundcolor = "#D3D3D3"
+        document.getElementById("timeslot-" + i + "-" + j).style.backgroundColor = "#D3D3D3"
       } else {
-        document.getElementById("timeslot-" + i + "-" + j).style.backgroundcolor = "white"
+        document.getElementById("timeslot-" + i + "-" + j).style.backgroundColor = "white"
       }
       document.getElementById("timeslot-" + i + "-" + j).innerHTML = "";
+      document.getElementById("timeslot-" + i + "-" + j).class = undefined;
 
     }
   }
 
   for (var i = 0; i < classList.length; i++) {
-    for (var x = 0; x < classList[i].timeSlots.length; x++) {
-      timeSlots[x].style.backgroundcolor = classList[i].color;
-    }
+      for (var d = 0; d < classList[i].days.length; d++) {
+        for (var s = classList[i].startTime; s < classList[i].endTime; s++) {
+          var timeSlot = document.getElementById("timeslot-" + s + "-" + classList[i].days[d])
+          timeSlot.style.backgroundColor = "#" + classList[i].color;
+          timeSlot.class = classList[i]
+        }
+      }
   }
 }
 
@@ -58,16 +65,32 @@ var selectedTimeSlot = undefined;
 document.addEventListener('click', function(e) {
   var id = event.target.id
   if (id.indexOf("timeslot") !== -1) {
-    console.log(getPeriod(event.target) + " " + getDay(event.target))
     selectedTimeSlot = document.getElementById("timeslot-" + getPeriod(event.target) + "-" + getDay(event.target))
     prepInfo(getDay(event.target), getPeriod(event.target))
   }
 }, false)
 
 function prepInfo(day, period) {
-  if (hasClass(document.getElementById("timeslot-" + day + "-" + period)) !== null) {
-    // load info
+  selClass = document.getElementById("timeslot-" + period + "-" + day).class
+  console.log(selClass)
+  if (selClass !== undefined) {
+    document.getElementById("classname").value = selClass.name;
+    document.getElementById("location").value = selClass.location;
+    for (var i = 0; i < 6; i++) {
+      document.getElementById("daybox-" + i).checked = false;
+    }
+    for (var i = 0; i < selClass.days.length; i++) {
+      document.getElementById("daybox-" + selClass.days[i]).checked = true;
+    }
+    for (var i = 0; i < 32; i++) {
+      document.getElementById("soption-" + i).selected = ""
+      document.getElementById("eoption-" + (i+1)).selected = ""
+    }
+    document.getElementById("soption-" + selClass.startTime).selected = "selected"
+    document.getElementById("eoption-" + selClass.endTime).selected = "selected"
+
   } else {
+    newColor();
     for (var i = 0; i < 32; i++) {
       if (i === period)
         document.getElementById("soption-" + i).selected = "selected"
@@ -80,9 +103,6 @@ function prepInfo(day, period) {
         if (document.getElementById("eoption-" + i) !== null)
           document.getElementById("eoption-" + i).selected = ""
       }
-
-
-
     }
 
 
@@ -93,18 +113,40 @@ function prepInfo(day, period) {
         document.getElementById("daybox-" + i).checked = false;
     }
 
+    selClass = new Class("", "", [day], document.getElementById("colorpicker").value, period, period+4)
 
+    classList.splice(0,0,selClass)
 
 
   }
   setDisabled(false);
 }
 
-function updateInfo() {
+function saveData() {
 
+  selClass.name = document.getElementById("classname").value
+  selClass.location = document.getElementById("location").value
+  var newDays = []
+  for (var i = 0; i < 6; i++) {
+    if (document.getElementById("daybox-" + i).checked) {
+      newDays.splice(0,0,i)
+    }
+  }
+  selClass.days = newDays
+  selClass.color = document.getElementById("colorpicker").value
+  for (var i = 0; i < 32; i++) {
+    if (document.getElementById("soption-" + i).selected === "selected") {
+      selClass.startTime = i;
+    }
+    if (document.getElementById("eoption-" + i) !== null)
+      if (document.getElementById("eoption-" + i).selected === "selected") {
+        selClass.endTime = i;
+      }
+  }
+  console.log(selClass)
 }
 
-function hasClass(timeSlot) {
+/*function getClass(timeSlot) {
   for (var x in classList) {
     for (var y in x.timeSlots) {
       if (getDay(timeSlot) === getDay(y) && getPeriod(timeSlot) === getPeriod(y)) {
@@ -112,8 +154,8 @@ function hasClass(timeSlot) {
       }
     }
   }
-  return null;
-}
+  return undefined;
+}*/
 
 function getPeriod(timeSlot) {
   var id = timeSlot.id;
@@ -153,6 +195,7 @@ function newColor() {
   for (var i = 0; i < el.length; i++) {
     el[i].value = color
   }
+  document.getElementById("colorpicker").style.backgroundColor = "#" + color;
 }
 
 function setDisabled(val) {
@@ -224,5 +267,10 @@ function setup() {
     div.innerHTML = div.innerHTML + " <b>" + letters[i] + "</b>"
     document.getElementById("panel-3").appendChild(div)
   }
-  newColor();
+
+  document.getElementById("submit").addEventListener("click", function() {
+    saveData();
+  })
+
+  //newColor();
 }
