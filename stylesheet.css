@@ -1,16 +1,17 @@
 * {
   font-family: Tahoma, serif;
+  font-size: 1.82vh;
 }
 
 tr#header > th {
-  width:125px;
+  width:7vw;
   text-align:center;
   border-bottom: 2px solid #111111
 }
 
 tr.time-period > th {
-  padding-top: 5px;
-  padding-bottom: 4px;
+  padding-top: 2px;
+  padding-bottom: 2px;
   border-right: 2px solid #111111
 }
 
@@ -18,6 +19,7 @@ table#table {
   border-collapse: collapse;
   border:2px solid #111111;
   float: left;
+  height: 100%
 }
 
 div#selectors {
@@ -31,12 +33,12 @@ td.timeslot:hover {
 
 
 th#spacer {
-  width:50px !important;
+  width:auto !important;
   border:none !important;
 }
 
 div.option-panel {
-  width: 450px;
+  width: 17vw;
   border: 1px solid #111111;
   border-top: none !important;
   padding: 5px;
@@ -49,6 +51,10 @@ div.option-panel#panel-1 {
 #panel-3 > div {
   padding: 2px;
   float: left;
+}
+
+#panel-3 {
+  height: 20px
 }
 
 th.right {
