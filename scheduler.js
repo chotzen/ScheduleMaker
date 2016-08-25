@@ -7,7 +7,7 @@ var hex = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
 var dayBoxes = new Array(6)
 var classList = [];
 
-setInterval(reload, 1000);
+setInterval(saveData, 100);
 
 var selClass = undefined;
 
@@ -89,6 +89,9 @@ function prepInfo(day, period) {
     document.getElementById("soption-" + selClass.startTime).selected = "selected"
     document.getElementById("eoption-" + selClass.endTime).selected = "selected"
 
+    document.getElementById("colorpicker").value = selClass.color;
+    document.getElementById("colorpicker").style.backgroundColor = "#" + selClass.color;
+
   } else {
     newColor();
     for (var i = 0; i < 32; i++) {
@@ -123,27 +126,29 @@ function prepInfo(day, period) {
 }
 
 function saveData() {
-
-  selClass.name = document.getElementById("classname").value
-  selClass.location = document.getElementById("location").value
-  var newDays = []
-  for (var i = 0; i < 6; i++) {
-    if (document.getElementById("daybox-" + i).checked) {
-      newDays.splice(0,0,i)
-    }
-  }
-  selClass.days = newDays
-  selClass.color = document.getElementById("colorpicker").value
-  for (var i = 0; i < 32; i++) {
-    if (document.getElementById("soption-" + i).selected === "selected") {
-      selClass.startTime = i;
-    }
-    if (document.getElementById("eoption-" + i) !== null)
-      if (document.getElementById("eoption-" + i).selected === "selected") {
-        selClass.endTime = i;
+  if (selClass !== undefined) {
+    selClass.name = document.getElementById("classname").value
+    selClass.location = document.getElementById("location").value
+    var newDays = []
+    for (var i = 0; i < 6; i++) {
+      if (document.getElementById("daybox-" + i).checked) {
+        newDays.splice(0,0,i)
       }
+    }
+    selClass.days = newDays
+    selClass.color = document.getElementById("colorpicker").value
+    for (var i = 0; i < 32; i++) {
+      if (document.getElementById("soption-" + i).selected === "selected") {
+        selClass.startTime = i;
+      }
+      if (document.getElementById("eoption-" + i) !== null)
+        if (document.getElementById("eoption-" + i).selected === "selected") {
+          selClass.endTime = i;
+        }
+    }
   }
   console.log(selClass)
+  reload()
 }
 
 /*function getClass(timeSlot) {
