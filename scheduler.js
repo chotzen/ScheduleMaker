@@ -173,20 +173,10 @@ document.getElementById("delete").addEventListener("click", function() {
   setDisabled(true)
   console.log("triggered")
 })
-function deleteClass() {
 
-}
+document.getElementById("savePDF").addEventListener("click", function() {
 
-/*function getClass(timeSlot) {
-  for (var x in classList) {
-    for (var y in x.timeSlots) {
-      if (getDay(timeSlot) === getDay(y) && getPeriod(timeSlot) === getPeriod(y)) {
-        return x;
-      }
-    }
-  }
-  return undefined;
-}*/
+})
 
 function getPeriod(timeSlot) {
   var id = timeSlot.id;

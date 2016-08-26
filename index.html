@@ -4,7 +4,6 @@
     <meta charset="utf-8">
     <title>Punahou Schedule Maker</title>
     <link href="stylesheet.css" rel="stylesheet">
-
   </head>
   <body>
     <div id="everything">
@@ -57,18 +56,20 @@
         <div id="panel-4" class="option-panel">
           <script src="jscolor.min.js"></script>
 
-          <b>Color:</b> <input class="jscolor" id="colorpicker" value="FFFFFF">
+          <b>Color:</b> <input class="jscolor" id="colorpicker" value="555555">
           <button id="delete" disabled="true" onclick="deleteClass">Delete</button>
         </div>
-
+        <div id="panel-5" class="option-panel">
+          <button id="savePDF">Save as PDF</button>
+        </div>
       </div>
+
     </div>
     <script type="text/javascript" src="scheduler.js">
     </script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.2.61/jspdf.min.js">
+    <script type="text/javascript" src="jspdf/jspdf.js">
     </script>
-    <script type="text/javascript" src="from_html.js">
+    <script type="text/javascript" src="jspdf/from_html.js">
     </script>
-
   </body>
 </html>

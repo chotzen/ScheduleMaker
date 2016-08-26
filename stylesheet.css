@@ -34,6 +34,10 @@ td.timeslot:hover {
 td.timeslot {
   border: none;
   text-align: center;
+  -webkit-transition: all 10ms ease;
+  -moz-transition: all 10ms ease;
+  -ms-transition: all 10ms ease;
+  transition: all 10ms ease;
 }
 
 
