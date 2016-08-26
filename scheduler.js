@@ -121,6 +121,9 @@ function prepInfo(day, period) {
         document.getElementById("daybox-" + i).checked = false;
     }
 
+    document.getElementById("classname").value = ""
+    document.getElementById("location").value = ""
+
     selClass = new Class("", "", [day], document.getElementById("colorpicker").value, period, period+4)
 
     classList.splice(0,0,selClass)
