@@ -137,15 +137,8 @@ function saveData() {
     }
     selClass.days = newDays
     selClass.color = document.getElementById("colorpicker").value
-    for (var i = 0; i < 32; i++) {
-      if (document.getElementById("soption-" + i).selected === "selected") {
-        selClass.startTime = i;
-      }
-      if (document.getElementById("eoption-" + i) !== null)
-        if (document.getElementById("eoption-" + i).selected === "selected") {
-          selClass.endTime = i;
-        }
-    }
+    selClass.startTime = document.getElementById("start-time-select").selectedIndex;
+    selClass.endTime = document.getElementById("end-time-select").selectedIndex + 1;
   }
   console.log(selClass)
   reload()
