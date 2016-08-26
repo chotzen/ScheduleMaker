@@ -31,6 +31,11 @@ td.timeslot:hover {
   border: 1px solid #111111
 }
 
+td.timeslot {
+  border: none;
+  text-align: center;
+}
+
 
 th#spacer {
   width:auto !important;

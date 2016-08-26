@@ -48,13 +48,20 @@ function reload() {
   }
 
   for (var i = 0; i < classList.length; i++) {
-      for (var d = 0; d < classList[i].days.length; d++) {
-        for (var s = classList[i].startTime; s < classList[i].endTime; s++) {
-          var timeSlot = document.getElementById("timeslot-" + s + "-" + classList[i].days[d])
-          timeSlot.style.backgroundColor = "#" + classList[i].color;
-          timeSlot.class = classList[i]
-        }
+    for (var d = 0; d < classList[i].days.length; d++) {
+      for (var s = classList[i].startTime; s < classList[i].endTime; s++) {
+        var timeSlot = document.getElementById("timeslot-" + s + "-" + classList[i].days[d])
+        timeSlot.style.backgroundColor = "#" + classList[i].color;
+        timeSlot.class = classList[i]
       }
+      if (classList[i].endTime - classList[i].startTime === 1) {
+        document.getElementById("timeslot-" + classList[i].startTime + "-" + classList[i].days[d]).innerHTML = classList[i].name + " - " + classList[i].location
+      } else {
+        var topMiddle = Math.floor((classList[i].startTime + classList[i].endTime) / 2) - 1
+        document.getElementById("timeslot-" + topMiddle + "-" + classList[i].days[d]).innerHTML = classList[i].name
+        document.getElementById("timeslot-" + (topMiddle + 1) + "-" + classList[i].days[d]).innerHTML = classList[i].location
+      }
+    }
   }
 }
 
@@ -95,17 +102,15 @@ function prepInfo(day, period) {
   } else {
     newColor();
     for (var i = 0; i < 32; i++) {
-      if (i === period)
-        document.getElementById("soption-" + i).selected = "selected"
-      else
         document.getElementById("soption-" + i).selected = ""
+        document.getElementById("eoption-" + (i+1)).selected = ""
+    }
 
-      if (i === period + 4)
-        document.getElementById("eoption-" + i).selected = "selected"
-      else {
-        if (document.getElementById("eoption-" + i) !== null)
-          document.getElementById("eoption-" + i).selected = ""
-      }
+    document.getElementById("soption-" + period).selected = "selected"
+    if (period < 28) {
+      document.getElementById("eoption-" + (period + 4)).selected = "selected"
+    } else {
+      document.getElementById("eoption-32").selected = "selected"
     }
 
 
