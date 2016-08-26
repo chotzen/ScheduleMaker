@@ -148,8 +148,18 @@ function saveData() {
     selClass.startTime = document.getElementById("start-time-select").selectedIndex;
     selClass.endTime = document.getElementById("end-time-select").selectedIndex + 1;
   }
-  console.log(selClass)
+  //console.log(selClass)
   reload()
+}
+
+document.getElementById("delete").addEventListener("click", function() {
+  var index = classList.indexOf(selClass)
+  classList.splice(index, 1)
+  setDisabled(true)
+  console.log("triggered")
+})
+function deleteClass() {
+
 }
 
 /*function getClass(timeSlot) {
@@ -209,7 +219,7 @@ function setDisabled(val) {
   document.getElementById("location").disabled = val;
   document.getElementById("start-time-select").disabled = val;
   document.getElementById("end-time-select").disabled = val;
-  document.getElementById("submit").disabled = val;
+  document.getElementById("delete").disabled = val;
   for (var i = 0; i < 6; i++) {
     document.getElementById("daybox-" + i).disabled = val;
   }
@@ -273,10 +283,6 @@ function setup() {
     div.innerHTML = div.innerHTML + " <b>" + letters[i] + "</b>"
     document.getElementById("panel-3").appendChild(div)
   }
-
-  document.getElementById("submit").addEventListener("click", function() {
-    saveData();
-  })
 
   //newColor();
 }
