@@ -41,6 +41,7 @@ function reload() {
       } else {
         document.getElementById("timeslot-" + i + "-" + j).style.backgroundColor = "white"
       }
+      document.getElementById("timeslot-" + i + "-" + j).style.color = "black"
       document.getElementById("timeslot-" + i + "-" + j).innerHTML = "";
       document.getElementById("timeslot-" + i + "-" + j).class = undefined;
 
@@ -53,6 +54,8 @@ function reload() {
         var timeSlot = document.getElementById("timeslot-" + s + "-" + classList[i].days[d])
         timeSlot.style.backgroundColor = "#" + classList[i].color;
         timeSlot.class = classList[i]
+
+
       }
       if (classList[i].endTime - classList[i].startTime === 1) {
         document.getElementById("timeslot-" + classList[i].startTime + "-" + classList[i].days[d]).innerHTML = classList[i].name + " - " + classList[i].location
@@ -60,6 +63,18 @@ function reload() {
         var topMiddle = Math.floor((classList[i].startTime + classList[i].endTime) / 2) - 1
         document.getElementById("timeslot-" + topMiddle + "-" + classList[i].days[d]).innerHTML = classList[i].name
         document.getElementById("timeslot-" + (topMiddle + 1) + "-" + classList[i].days[d]).innerHTML = classList[i].location
+
+      }
+      var color = classList[i].color;
+      var red = parseInt(color.substring(0, 2), 16)
+      var green = parseInt(color.substring(2, 4), 16)
+      var blue = parseInt(color.substring(4), 16)
+
+      var avg = (red + green + blue) / 3
+
+      if (avg < 150) {
+        document.getElementById("timeslot-" + topMiddle + "-" + classList[i].days[d]).style.color = "white"
+        document.getElementById("timeslot-" + (topMiddle + 1) + "-" + classList[i].days[d]).style.color = "white"
       }
     }
   }
@@ -190,6 +205,7 @@ function getDay(timeSlot) {
     return parseInt(id.charAt(12))
   }
 }
+
 
 
 function toTime(period) {
