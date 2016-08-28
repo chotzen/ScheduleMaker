@@ -175,8 +175,31 @@ document.getElementById("delete").addEventListener("click", function() {
 })
 
 document.getElementById("savePDF").addEventListener("click", function() {
+  var pdf = new jsPDF('p', 'pt', 'letter');
+  // Headers
+
+  pdf.setDrawColor(0)
+  pdf.setFillColor(125,125,125)
+  pdf.rect(20,20,570,20)
+
+
+  // Row loop
+
+  pdf.save('test.pdf')
 
 })
+
+function textBox(fr, fg, fb, x, y, height, width, text, pdf) {
+  pdf.setDrawColor(0)
+  pdf.setFillColor(fr, fg, fb)
+  pdf.rect(x, y, height, width)
+  if ((fr + fg + fb) / 3 > 125) {
+    pdf.setTextColor(255)
+  } else {
+    pdf.setTextColor(0)
+  }
+  pdf.text(text, x, y, height, width, 'center')
+}
 
 function getPeriod(timeSlot) {
   var id = timeSlot.id;
@@ -289,6 +312,4 @@ function setup() {
     div.innerHTML = div.innerHTML + " <b>" + letters[i] + "</b>"
     document.getElementById("panel-3").appendChild(div)
   }
-
-  //newColor();
 }
