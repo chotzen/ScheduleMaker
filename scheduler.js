@@ -179,8 +179,9 @@ document.getElementById("savePDF").addEventListener("click", function() {
   // Headers
 
   pdf.setDrawColor(0)
-  pdf.setFillColor(0)
+  pdf.setFillColor(255)
   pdf.rect(20,30,570,20, "F")
+  pdf.setFont("helvetica")
 
   for (var i = 0; i < 32; i++) {
     if (i % 2 == 0) {
@@ -189,7 +190,8 @@ document.getElementById("savePDF").addEventListener("click", function() {
       pdf.setFillColor(255)
     }
     pdf.setDrawColor(255)
-    pdf.rect(20, 51 + (i * 20), 50, 20, "F")
+    pdf.rect(20, 70 + (i * 20), 50, 20, "F")
+    pdf.text(toTime(i), 45, 66 + (i * 20), "center")
   }
 
 
