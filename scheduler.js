@@ -54,8 +54,6 @@ function reload() {
         var timeSlot = document.getElementById("timeslot-" + s + "-" + classList[i].days[d])
         timeSlot.style.backgroundColor = "#" + classList[i].color;
         timeSlot.class = classList[i]
-
-
       }
       if (classList[i].endTime - classList[i].startTime === 1) {
         document.getElementById("timeslot-" + classList[i].startTime + "-" + classList[i].days[d]).innerHTML = classList[i].name + " - " + classList[i].location
@@ -179,23 +177,47 @@ document.getElementById("savePDF").addEventListener("click", function() {
   // Headers
 
   pdf.setDrawColor(0)
-  pdf.setFillColor(0)
+  pdf.setFillColor(255)
   pdf.rect(20,30,570,20, "F")
+  pdf.setFont("helvetica")
 
   for (var i = 0; i < 32; i++) {
-    if (i % 2 == 0) {
-      pdf.setFillColor(200)
-    } else {
+    if (i % 2 !== 0) {
       pdf.setFillColor(255)
+    } else {
+      pdf.setFillColor(200)
     }
     pdf.setDrawColor(255)
-    pdf.rect(20, 51 + (i * 20), 50, 20, "F")
+    pdf.rect(20, 50 + (i * 20), 570, 20, "F")
+    pdf.text(toTime(i), 45, 66 + (i * 20), "center")
+  }
+
+  for (var i = 0; i < 6; i++) {
+    pdf.text(letters[i], 107 + (86 * i), 40)
+  }
+
+  for (var i = 0; i < classList.length; i++) {
+    var color = classList[i].color;
+    var red = parseInt(color.substring(0, 2), 16)
+    var green = parseInt(color.substring(2, 4), 16)
+    var blue = parseInt(color.substring(4), 16)
+    var white = (red + green + blue)/3 > 127
+    for (var di = 0; di < classList[i].days.length; di++) {
+      pdf.setFillColor(red, green, blue)
+      pdf.rect(68 + (classList[i].days[di] * 87), 50 + (classList[i].startTime * 20), 87, 20 * (classList[i].endTime - classList[i].startTime), "F")
+      var topaverage = Math.floor((classList[i].startTime + classList[i].endTime) / 2) - 1
+      if (white) {
+        pdf.setTextColor(0)
+      } else {
+        pdf.setTextColor(255)
+      }
+      pdf.text(classList[i].name, 111 + (classList[i].days[di] * 87), 67 + (topaverage* 20), "center")
+      pdf.text(classList[i].location, 111 + (classList[i].days[di] * 87), 67 + ((topaverage + 1)* 20), "center")
+    }
   }
 
 
-  // Row loop
-
-  pdf.save('test.pdf')
+  pdf.save('Schedule.pdf')
 
 })
 
