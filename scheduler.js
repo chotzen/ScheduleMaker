@@ -211,6 +211,7 @@ document.getElementById("savePDF").addEventListener("click", function() {
       } else {
         pdf.setTextColor(255)
       }
+      pdf.setFontSize(14)
       pdf.text(classList[i].name, 111 + (classList[i].days[di] * 87), 67 + (topaverage* 20), "center")
       pdf.text(classList[i].location, 111 + (classList[i].days[di] * 87), 67 + ((topaverage + 1)* 20), "center")
     }
