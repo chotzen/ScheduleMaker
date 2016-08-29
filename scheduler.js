@@ -179,8 +179,18 @@ document.getElementById("savePDF").addEventListener("click", function() {
   // Headers
 
   pdf.setDrawColor(0)
-  pdf.setFillColor(125,125,125)
-  pdf.rect(20,20,570,20)
+  pdf.setFillColor(0)
+  pdf.rect(20,30,570,20, "F")
+
+  for (var i = 0; i < 32; i++) {
+    if (i % 2 == 0) {
+      pdf.setFillColor(200)
+    } else {
+      pdf.setFillColor(255)
+    }
+    pdf.setDrawColor(255)
+    pdf.rect(20, 51 + (i * 20), 50, 20, "F")
+  }
 
 
   // Row loop
