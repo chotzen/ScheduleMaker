@@ -54,8 +54,6 @@ function reload() {
         var timeSlot = document.getElementById("timeslot-" + s + "-" + classList[i].days[d])
         timeSlot.style.backgroundColor = "#" + classList[i].color;
         timeSlot.class = classList[i]
-
-
       }
       if (classList[i].endTime - classList[i].startTime === 1) {
         document.getElementById("timeslot-" + classList[i].startTime + "-" + classList[i].days[d]).innerHTML = classList[i].name + " - " + classList[i].location
@@ -184,20 +182,33 @@ document.getElementById("savePDF").addEventListener("click", function() {
   pdf.setFont("helvetica")
 
   for (var i = 0; i < 32; i++) {
-    if (i % 2 == 0) {
-      pdf.setFillColor(200)
-    } else {
+    if (i % 2 !== 0) {
       pdf.setFillColor(255)
+    } else {
+      pdf.setFillColor(200)
     }
     pdf.setDrawColor(255)
-    pdf.rect(20, 70 + (i * 20), 50, 20, "F")
+    pdf.rect(20, 50 + (i * 20), 570, 20, "F")
     pdf.text(toTime(i), 45, 66 + (i * 20), "center")
   }
 
+  for (var i = 0; i < 6; i++) {
+    pdf.text(letters[i], 113 + (86 * i), 40)
+  }
 
-  // Row loop
+  for (var i = 0; i < classList.length; i++) {
+    var color = classList[i].color;
+    var red = parseInt(color.substring(0, 2), 16)
+    var green = parseInt(color.substring(2, 4), 16)
+    var blue = parseInt(color.substring(4), 16)
+    pdf.setFillColor(red, green, blue)
+    for (var di = 0; di < classList[i].days.length; di++) {
+      pdf.rect(68 + (classList[i].days[di] * 87), 50 + (classList[i].startTime * 20), 87, 20 * (classList[i].endTime - classList[i].startTime), "F")
+    }
+  }
 
-  pdf.save('test.pdf')
+
+  pdf.save('Schedule.pdf')
 
 })
 
