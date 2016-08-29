@@ -43,7 +43,6 @@ var getCharWidthsArray = API.getCharWidthsArray = function(text, options){
 	if (!options) {
 		options = {}
 	}
-	console.log(this.internal.getFont())
 
 	var widths = options.widths ? options.widths : this.internal.getFont().metadata.Unicode.widths
 	, widthsFractionOf = widths.fof ? widths.fof : 1

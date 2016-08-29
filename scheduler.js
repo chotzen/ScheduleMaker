@@ -193,7 +193,7 @@ document.getElementById("savePDF").addEventListener("click", function() {
   }
 
   for (var i = 0; i < 6; i++) {
-    pdf.text(letters[i], 113 + (86 * i), 40)
+    pdf.text(letters[i], 107 + (86 * i), 40)
   }
 
   for (var i = 0; i < classList.length; i++) {
@@ -201,9 +201,18 @@ document.getElementById("savePDF").addEventListener("click", function() {
     var red = parseInt(color.substring(0, 2), 16)
     var green = parseInt(color.substring(2, 4), 16)
     var blue = parseInt(color.substring(4), 16)
-    pdf.setFillColor(red, green, blue)
+    var white = (red + green + blue)/3 > 127
     for (var di = 0; di < classList[i].days.length; di++) {
+      pdf.setFillColor(red, green, blue)
       pdf.rect(68 + (classList[i].days[di] * 87), 50 + (classList[i].startTime * 20), 87, 20 * (classList[i].endTime - classList[i].startTime), "F")
+      var topaverage = Math.floor((classList[i].startTime + classList[i].endTime) / 2) - 1
+      if (white) {
+        pdf.setTextColor(0)
+      } else {
+        pdf.setTextColor(255)
+      }
+      pdf.text(classList[i].name, 111 + (classList[i].days[di] * 87), 67 + (topaverage* 20), "center")
+      pdf.text(classList[i].location, 111 + (classList[i].days[di] * 87), 67 + ((topaverage + 1)* 20), "center")
     }
   }
 
