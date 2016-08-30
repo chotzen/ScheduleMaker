@@ -172,6 +172,11 @@ document.getElementById("delete").addEventListener("click", function() {
   console.log("triggered")
 })
 
+document.getElementById("reset").addEventListener("click", function() {
+  classList = [];
+  setDisabled(true);
+})
+
 document.getElementById("savePDF").addEventListener("click", function() {
   var pdf = new jsPDF('p', 'pt', 'letter');
   // Headers
@@ -201,7 +206,7 @@ document.getElementById("savePDF").addEventListener("click", function() {
     var red = parseInt(color.substring(0, 2), 16)
     var green = parseInt(color.substring(2, 4), 16)
     var blue = parseInt(color.substring(4), 16)
-    var white = (red + green + blue)/3 > 127
+    var white = (red + green + blue)/3 > 150
     for (var di = 0; di < classList[i].days.length; di++) {
       pdf.setFillColor(red, green, blue)
       pdf.rect(68 + (classList[i].days[di] * 87), 50 + (classList[i].startTime * 20), 87, 20 * (classList[i].endTime - classList[i].startTime), "F")
