@@ -1,1 +1,37 @@
+div#header {
+  background-color: #ff3300;
+  color: white;
+  height: 50px;
+}
 
+div#main-container {
+  padding: 0px;
+  margin: 0px;
+  width: 100%;
+}
+
+h1.site-title {
+  float: left;
+  font-size: 18pt;
+  margin-left: 5px;
+  margin-top: 10px;
+}
+
+h2.site-subtitle {
+  float: left;
+  font-size: 12pt;
+  margin-top: 15px;
+  margin-left: 10px;
+}
+
+div#content {
+
+}
+
+div#sched {
+  border: 6px solid red;
+}
+
+div#info {
+  border: 6px solid red;
+}
