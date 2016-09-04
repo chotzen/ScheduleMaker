@@ -1,89 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>Punahou Schedule Maker</title>
-    <link href="stylesheet.css" rel="stylesheet">
-    <link rel="stylesheet"
-    href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-    integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-    crossorigin="anonymous">
-    <script
-    src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-    integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-    crossorigin="anonymous"></script>
-
-  </head>
-  <body>
-    <div id="everything">
-      <table id="table">
-        <tr id="header">
-          <th id="spacer"></th>
-          <th>A</th>
-          <th>B</th>
-          <th>C</th>
-          <th>D</th>
-          <th>E</th>
-          <th>F</th>
-        </tr>
-        <tr></tr>
-      </table>
-      <div id="selectors">
-        <div id="panel-1" class="option-panel">
-          <table class="input-grid">
-            <tr>
-              <th align="right">Class Name:</th>
-              <td><input disabled="true" type="text" id="classname" maxlength="11"/></td>
-            </tr>
-            <tr>
-              <th align="right">Location:</th>
-              <td><input disabled="true" type="text" id="location" maxlength="6"/></td>
-            </tr>
-          </table>
-        </div>
-        <div id="panel-2" class="option-panel">
-          <table class="input-grid">
-            <tr>
-              <th align="right">Start Time:</th>
-              <td id="start-time-cell">
-                <select disabled="true" id="start-time-select">
-                </select>
-              </td>
-            </tr>
-            <tr>
-              <th align="right">End Time:</th>
-              <td>
-                <select disabled="true" id="end-time-select">
-                </select>
-              </td>
-            </tr>
-          </table>
-        </div>
-        <div id="panel-3" class="option-panel">
-          &nbsp;
-        </div>
-        <div id="panel-4" class="option-panel">
-          <script src="jscolor.min.js"></script>
-
-          <b>Color:</b> <input class="jscolor" id="colorpicker" value="555555">
-          <button id="delete" disabled="true" onclick="deleteClass">Delete</button>
-        </div>
-        <div id="panel-5" class="option-panel">
-          <button id="reset">Reset</button>
-          <button id="savePDF">Save as PDF</button>
-        </div>
-      </div>
-
+<!doctype HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Schedule Maker</title>
+  <!-- Bootstrap -->
+  <link rel="stylesheet"
+  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+  integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+  crossorigin="anonymous">
+</head>
+<body>
+  <div class="container" id="main-container">
+    <div class="row">
+      <div class="col-md-12 hidden-sm hidden-xs">
+      <p>Testing 123</p>
     </div>
-    <script type="text/javascript" src="scheduler.js">
-    </script>
-    <script type="text/javascript" src="jspdf/jspdf.js">
-    </script>
-    <script type="text/javascript" src="jspdf/filesaver.js">
-    </script>
-    <script type="text/javascript" src="jspdf/split_text_to_size.js">
-    </script>
-    <script type="text/javascript" src="jspdf/standard_fonts_metrics.js">
-    </script>
-  </body>
-</html>
+    </div>
+  </div>
+
+
+  <script type="text/javascript">
+
+  </script>
+  <!--script type="text/javascript" src="scheduler.js">
+  </script>
+  <script type="text/javascript" src="jspdf/jspdf.js">
+  </script>
+  <script type="text/javascript" src="jspdf/filesaver.js">
+  </script>
+  <script type="text/javascript" src="jspdf/split_text_to_size.js">
+  </script>
+  <script type="text/javascript" src="jspdf/standard_fonts_metrics.js">
+  </script-->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+  integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+  crossorigin="anonymous"></script>
+</body>
+</html
