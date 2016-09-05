@@ -1,4 +1,4 @@
-# ScheduleMakerOnline
+# ScheduleMaker
 This project allows people to create their schedules for school in a quick, expedient, and simple way without having to build it themselves in another program. 
 
 Special thanks to the teams behind [JSPDF](https://parall.ax/products/jspdf) and [Bootstrap Color Picker](https://mjolnic.com/bootstrap-colorpicker/)
