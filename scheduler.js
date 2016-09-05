@@ -162,7 +162,26 @@ function saveData() {
     selClass.endTime = document.getElementById("end-time-select").selectedIndex + 1;
   }
   //console.log(selClass)
+  updateDropdowns();
   reload()
+}
+
+function updateDropdowns() {
+  var startTime = selClass.startTime
+  var endTime = selClass.endTime
+  for (var n = 0; n < 32; n++) {
+    if (n < startTime) {
+      document.getElementById("end-time-select").options[n].disabled = true;
+    } else {
+      document.getElementById("end-time-select").options[n].disabled = false;
+    }
+
+    if (n > endTime - 1) {
+      document.getElementById("start-time-select").options[n].disabled = true;
+    } else {
+      document.getElementById("start-time-select").options[n].disabled = false;
+    }
+  }
 }
 
 document.getElementById("delete").addEventListener("click", function() {
