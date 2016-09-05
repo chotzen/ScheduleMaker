@@ -167,19 +167,26 @@ function saveData() {
 }
 
 function updateDropdowns() {
+  if (selClass == undefined) {
+    return;
+  }
   var startTime = selClass.startTime
   var endTime = selClass.endTime
   for (var n = 0; n < 32; n++) {
     if (n < startTime) {
       document.getElementById("end-time-select").options[n].disabled = true;
+      document.getElementById("end-time-select").options[n].innerHTML = toTime(n)
     } else {
       document.getElementById("end-time-select").options[n].disabled = false;
+      document.getElementById("end-time-select").options[n].innerHTML = toTime(n) + " - " + toHr(n - startTime + 1)
     }
 
     if (n > endTime - 1) {
       document.getElementById("start-time-select").options[n].disabled = true;
+      document.getElementById("start-time-select").options[n].innerHTML = toTime(n)
     } else {
       document.getElementById("start-time-select").options[n].disabled = false;
+      document.getElementById("start-time-select").options[n].innerHTML = toTime(n) + " - " + toHr(endTime - n)
     }
   }
 }
@@ -287,6 +294,14 @@ function toTime(period) {
   return Math.floor(min / 60) + ":" + leftside
 }
 
+function toHr(length) {
+  var min = (length * 15)
+  var leftside = min % 60
+  if (leftside == 0) {
+    leftside = '00'
+  }
+  return Math.floor(min / 60) + ":" + leftside
+}
 
 function newColor() {
   var color = ""
