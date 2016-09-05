@@ -201,9 +201,9 @@ document.getElementById("savePDF").addEventListener("click", function() {
 
   for (var i = 0; i < classList.length; i++) {
     var color = classList[i].color;
-    var red = parseInt(color.substring(0, 2), 16)
-    var green = parseInt(color.substring(2, 4), 16)
-    var blue = parseInt(color.substring(4), 16)
+    var red = parseInt(color.substring(1, 3), 16)
+    var green = parseInt(color.substring(3, 5), 16)
+    var blue = parseInt(color.substring(5), 16)
     var white = (red + green + blue)/3 > 150
     for (var di = 0; di < classList[i].days.length; di++) {
       pdf.setFillColor(red, green, blue)
