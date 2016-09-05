@@ -49,30 +49,32 @@ function reload() {
   }
 
   for (var i = 0; i < classList.length; i++) {
+    var color = classList[i].color;
+    var red = parseInt(color.substring(1, 3), 16)
+    var green = parseInt(color.substring(3, 5), 16)
+    var blue = parseInt(color.substring(5), 16)
+
+    var avg = (red + green + blue) / 3
     for (var d = 0; d < classList[i].days.length; d++) {
-      for (var s = classList[i].startTime; s < classList[i].endTime; s++) {
-        var timeSlot = document.getElementById("timeslot-" + s + "-" + classList[i].days[d])
-        timeSlot.style.backgroundColor = classList[i].color;
-        timeSlot.class = classList[i]
-      }
       if (classList[i].endTime - classList[i].startTime === 1) {
-        document.getElementById("timeslot-" + classList[i].startTime + "-" + classList[i].days[d]).innerHTML = classList[i].name + " - " + classList[i].location
+        document.getElementById("timeslot-" + classList[i].startTime + "-" + classList[i].days[d]).style.backgroundColor = color
+        document.getElementById("timeslot-" + classList[i].startTime + "-" + classList[i].days[d]).innerHTML = classList[i].name.substring(0, 4) + ". - " + classList[i].location
+        if (avg < 150) {
+          document.getElementById("timeslot-" + classList[i].startTime + "-" + classList[i].days[d]).style.color = "white"
+        }
       } else {
+        for (var s = classList[i].startTime; s < classList[i].endTime; s++) {
+          var timeSlot = document.getElementById("timeslot-" + s + "-" + classList[i].days[d])
+          timeSlot.style.backgroundColor = color;
+          timeSlot.class = classList[i]
+        }
         var topMiddle = Math.floor((classList[i].startTime + classList[i].endTime) / 2) - 1
         document.getElementById("timeslot-" + topMiddle + "-" + classList[i].days[d]).innerHTML = classList[i].name
         document.getElementById("timeslot-" + (topMiddle + 1) + "-" + classList[i].days[d]).innerHTML = classList[i].location
-
-      }
-      var color = classList[i].color;
-      var red = parseInt(color.substring(1, 3), 16)
-      var green = parseInt(color.substring(3, 5), 16)
-      var blue = parseInt(color.substring(5), 16)
-
-      var avg = (red + green + blue) / 3
-
-      if (avg < 150) {
-        document.getElementById("timeslot-" + topMiddle + "-" + classList[i].days[d]).style.color = "white"
-        document.getElementById("timeslot-" + (topMiddle + 1) + "-" + classList[i].days[d]).style.color = "white"
+        if (avg < 150) {
+          document.getElementById("timeslot-" + topMiddle + "-" + classList[i].days[d]).style.color = "white"
+          document.getElementById("timeslot-" + (topMiddle + 1) + "-" + classList[i].days[d]).style.color = "white"
+        }
       }
     }
   }

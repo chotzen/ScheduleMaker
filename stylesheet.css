@@ -73,6 +73,7 @@ th.col-xs-2 {
   border-bottom: 2px solid black;
   padding: 0px;
 }
+
 th {
   border-top: 2px solid black;
   text-align:center;
@@ -83,6 +84,6 @@ th {
 }
 
 .timeslot {
-  border: none;
   text-align:center;
+  font-size: 13pt;
 }
