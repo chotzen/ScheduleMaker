@@ -1,3 +1,10 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%
+}
+
 div#header {
   background-color: #ff3300;
   color: white;
@@ -8,6 +15,7 @@ div#main-container {
   padding: 0px;
   margin: 0px;
   width: 100%;
+  background-color: white;
 }
 
 h1.site-title {
@@ -24,14 +32,38 @@ h2.site-subtitle {
   margin-left: 10px;
 }
 
-div#content {
-
-}
-
 div#sched {
-  border: 6px solid red;
+  left:0;
+  top:0;
+  height:91vh;
+  overflow-y:scroll;
+  padding-top: 5px;
+  font-size: 13px;
 }
 
-div#info {
-  border: 6px solid red;
+tr {
+  height: 18px;
+}
+
+
+th#head {
+  border-right: none;
+  border-left: 2px solid black;
+  height: 15px;
+}
+
+th.col-sm-2 {
+  border-bottom: 2px solid black;
+}
+th {
+  border-top: 2px solid black;
+  text-align:center;
+}
+
+.timeslot:hover {
+  border: 1px solid black;
+}
+
+.timeslot {
+  border: none;
 }
