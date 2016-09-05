@@ -27,7 +27,7 @@ h1.site-title {
 
 h2.site-subtitle {
   float: left;
-  font-size: 12pt;
+  font-size: 13pt;
   margin-top: 15px;
   margin-left: 10px;
 }
@@ -38,11 +38,11 @@ div#sched {
   height:91vh;
   overflow-y:scroll;
   padding-top: 5px;
-  font-size: 13px;
+  font-size: 14pt
 }
 
 tr {
-  height: 18px;
+  height: 26px;
 }
 
 

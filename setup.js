@@ -21,6 +21,7 @@ function setup() {
     var timesH = document.createElement("th")
     timesH.innerHTML = toTime(i)
     timesH.style = "border-top: none; border-left: 2px solid black; border-right: 2px solid black"
+    timesH.id = "timelabel-" + i
 
     timesRow.appendChild(timesH)
     timesTable.appendChild(timesRow)
@@ -36,5 +37,6 @@ function setup() {
 
     schedTable.appendChild(schedRow)
   }
+  document.getElementById("timelabel-31").style = "border-top: none; border-left: 2px solid black; border-right: 2px solid black; border-bottom: 2px solid black"
 
 }
