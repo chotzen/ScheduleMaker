@@ -9,3 +9,5 @@ Feel free to create issues if you find any bugs. Please leave:
 - Window Size
 
 If you want to fix said bugs yourself or add a cool new feature, please fork and make a pull request. I'll gladly merge it.
+
+[Live version](https://dchotzen-hartzell.github.io/ScheduleMaker/)
