@@ -38,22 +38,40 @@ div#sched {
   height:91vh;
   overflow-y:scroll;
   padding-top: 5px;
-  font-size: 14pt
+  font-size: 14pt;
+
+}
+
+table#sched-table {
+  margin-left: 1px;
 }
 
 tr {
   height: 26px;
 }
 
+div.form-group {
+  margin-bottom: 2px !important;
+}
+
+label.col-sm-3 {
+  text-align: right;
+  padding-top: 3px;
+}
+
+div.col-sm-3 {
+  padding-top: 5px;
+}
 
 th#head {
   border-right: none;
   border-left: 2px solid black;
-  height: 15px;
+  height: 28px;
 }
 
-th.col-sm-2 {
+th.col-xs-2 {
   border-bottom: 2px solid black;
+  padding: 0px;
 }
 th {
   border-top: 2px solid black;

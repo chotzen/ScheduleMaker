@@ -45,19 +45,63 @@
         </table>
         <table id="sched-table" class="col-xs-11">
           <tr>
-              <th class="col-sm-2">A</th>
-              <th class="col-sm-2">B</th>
-              <th class="col-sm-2">C</th>
-              <th class="col-sm-2">D</th>
-              <th class="col-sm-2">E</th>
-              <th class="col-sm-2" style="border-right: 2px solid black">F</th>
+              <th class="col-xs-2">A</th>
+              <th class="col-xs-2">B</th>
+              <th class="col-xs-2">C</th>
+              <th class="col-xs-2">D</th>
+              <th class="col-xs-2">E</th>
+              <th class="col-xs-2" style="border-right: 2px solid black">F</th>
           </tr>
           <!-- To be filled in by JS -->
         </table>
 
       </div>
-      <div class="main-content col-sm-3 col-xs-12" id="info">
+      <div class="col-sm-3 col-xs-12" id="info">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <form class="form-horizontal">
 
+              <div class="form-group">
+                <label for="className" class="col-sm-3">Class Name</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="classname">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="className" class="col-sm-3">Location</label>
+                <div class="col-sm-4">
+                  <input type="text" class="form-control" id="location" maxlength="6">
+                </div>
+              </div>
+
+            </form>
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <form class="form-horizontal">
+
+              <div class="form-group">
+                <label for="startTime" class="col-sm-3">Start Time</label>
+                <div class="col-sm-4">
+                  <select class="form-control" id="start-time-select">
+
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="endTime" class="col-sm-3">End Time</label>
+                <div class="col-sm-4">
+                  <select class="form-control" id="end-time-select">
+
+                  </select>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
       </div>
       <div class="sidebar col-sm-1 hidden-xs">
         &nbsp;
@@ -129,6 +173,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
   integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
   crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="setup.js"></script>
 </body>
 </html
