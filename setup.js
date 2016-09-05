@@ -1,5 +1,5 @@
 var letters = ["A", "B", "C", "D", "E", "F"];
-
+var dayBoxes = new Array(6)
 function toTime(period) {
   var min = (period * 15) + 450
   var leftside = min % 60
@@ -72,7 +72,22 @@ function setup() {
     endTimeSelect.appendChild(eoption)
   }
 
+  for (var i = 0; i < 6; i++) {
+    var lbl = document.createElement("label")
+    lbl.setAttribute('class', 'checkbox-inline')
+    dayBoxes[i] = document.createElement("input")
+    dayBoxes[i].type = "checkbox"
+    dayBoxes[i].id = "daybox-" + i
+    dayBoxes[i].disabled = true;
 
+    lbl.appendChild(dayBoxes[i])
+    lbl.innerHTML = lbl.innerHTML + " " + letters[i]
+    document.getElementById("checkboxes").appendChild(lbl)
+  }
 
 
 }
+
+$(function() {
+    $('#colorpicker-div').colorpicker();
+});

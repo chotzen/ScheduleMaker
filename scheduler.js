@@ -52,7 +52,7 @@ function reload() {
     for (var d = 0; d < classList[i].days.length; d++) {
       for (var s = classList[i].startTime; s < classList[i].endTime; s++) {
         var timeSlot = document.getElementById("timeslot-" + s + "-" + classList[i].days[d])
-        timeSlot.style.backgroundColor = "#" + classList[i].color;
+        timeSlot.style.backgroundColor = classList[i].color;
         timeSlot.class = classList[i]
       }
       if (classList[i].endTime - classList[i].startTime === 1) {
@@ -64,9 +64,9 @@ function reload() {
 
       }
       var color = classList[i].color;
-      var red = parseInt(color.substring(0, 2), 16)
-      var green = parseInt(color.substring(2, 4), 16)
-      var blue = parseInt(color.substring(4), 16)
+      var red = parseInt(color.substring(1, 3), 16)
+      var green = parseInt(color.substring(3, 5), 16)
+      var blue = parseInt(color.substring(5), 16)
 
       var avg = (red + green + blue) / 3
 
@@ -108,9 +108,7 @@ function prepInfo(day, period) {
     }
     document.getElementById("soption-" + selClass.startTime).selected = "selected"
     document.getElementById("eoption-" + selClass.endTime).selected = "selected"
-
-    document.getElementById("colorpicker").value = selClass.color;
-    document.getElementById("colorpicker").style.backgroundColor = "#" + selClass.color;
+    $("#colorpicker-div").colorpicker('setValue', "#" + selClass.color)
 
   } else {
     newColor();
@@ -157,7 +155,7 @@ function saveData() {
       }
     }
     selClass.days = newDays
-    selClass.color = document.getElementById("colorpicker").value
+    selClass.color = $("#colorpicker-div").colorpicker("getValue")
     selClass.startTime = document.getElementById("start-time-select").selectedIndex;
     selClass.endTime = document.getElementById("end-time-select").selectedIndex + 1;
   }
@@ -274,11 +272,12 @@ function newColor() {
   for (var i = 0; i < 6; i++) {
     color = color + hex[Math.floor(Math.random() * 16)]
   }
-  var el = document.getElementsByClassName("jscolor")
-  for (var i = 0; i < el.length; i++) {
-    el[i].value = color
-  }
-  document.getElementById("colorpicker").style.backgroundColor = "#" + color;
+  var el = document.getElementById("colorpicker")
+  $("#colorpicker-div").colorpicker('setValue', "#" + color)
+  //for (var i = 0; i < el.length; i++) {
+  //  el[i].value = color
+  //}
+  //document.getElementById("colorpicker").style.backgroundColor = color;
 }
 
 function setDisabled(val) {
@@ -287,6 +286,7 @@ function setDisabled(val) {
   document.getElementById("start-time-select").disabled = val;
   document.getElementById("end-time-select").disabled = val;
   document.getElementById("delete").disabled = val;
+  document.getElementById("colorpicker").disabled = val;
   for (var i = 0; i < 6; i++) {
     document.getElementById("daybox-" + i).disabled = val;
   }
@@ -295,26 +295,40 @@ function setDisabled(val) {
 
 setup();
 function setup() {
-  for (var i = 0; i < 32; i++) {
-    var row = document.createElement("tr")
-    row.setAttribute('id', 'row-' + i)
-    row.setAttribute('class', 'time-period')
-    if (i % 2 == 0) {
-      row.setAttribute('style', 'background-color:#D3D3D3')
-    }
-    document.getElementById("table").appendChild(row)
+  var timesTable = document.getElementById("times-table")
+  var schedTable = document.getElementById("sched-table")
 
-    var time = document.createElement("th")
-    time.innerHTML = toTime(i)
-    document.getElementById("row-" + i).appendChild(time)
+  for (var i = 0; i < 32; i++) {
+    var timesRow = document.createElement("tr")
+    var timesH = document.createElement("th")
+    timesH.innerHTML = toTime(i)
+    timesH.id = "timelabel-" + i
+    if (i % 2 === 0) {
+      timesH.style = "border-top: none; border-left: 2px solid black; border-right: 2px solid black; background-color: #D3D3D3"
+    } else {
+      timesH.style = "border-top: none; border-left: 2px solid black; border-right: 2px solid black; background-color: #FFFFFF"
+    }
+
+    timesRow.appendChild(timesH)
+    timesTable.appendChild(timesRow)
+
+    var schedRow = document.createElement("tr")
 
     for (var j = 0; j < 6; j++) {
       var timeslot = document.createElement("td")
       timeslot.setAttribute('id', 'timeslot-' + i + '-' + j)
       timeslot.setAttribute('class', 'timeslot')
-      row.appendChild(timeslot)
+      if (i % 2 === 0) {
+        timeslot.style = "background-color: #FFFFFF"
+      } else {
+        timeslot.style = "background-color: #D3D3D3"
+      }
+      schedRow.appendChild(timeslot)
     }
+
+    schedTable.appendChild(schedRow)
   }
+  document.getElementById("timelabel-31").style = "border-top: none; border-left: 2px solid black; border-right: 2px solid black; border-bottom: 2px solid black; background-color: #FFFFFF"
 
   var startTimeSelect = document.getElementById("start-time-select")
   var endTimeSelect = document.getElementById("end-time-select")
@@ -341,13 +355,21 @@ function setup() {
   }
 
   for (var i = 0; i < 6; i++) {
-    var div = document.createElement("div")
+    var lbl = document.createElement("label")
+    lbl.setAttribute('class', 'checkbox-inline')
     dayBoxes[i] = document.createElement("input")
     dayBoxes[i].type = "checkbox"
     dayBoxes[i].id = "daybox-" + i
     dayBoxes[i].disabled = true;
-    div.appendChild(dayBoxes[i])
-    div.innerHTML = div.innerHTML + " <b>" + letters[i] + "</b>"
-    document.getElementById("panel-3").appendChild(div)
+
+    lbl.appendChild(dayBoxes[i])
+    lbl.innerHTML = lbl.innerHTML + " " + letters[i]
+    document.getElementById("checkboxes").appendChild(lbl)
   }
+
+
 }
+
+$(function() {
+    $('#colorpicker-div').colorpicker();
+});
