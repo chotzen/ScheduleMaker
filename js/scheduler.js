@@ -167,8 +167,18 @@ function saveData() {
   reload()
 }
 
+var updateCooldown = 0;
+
+function decreaseCooldown() {
+  if (updateCooldown !== 0) {
+    updateCooldown = updateCooldown - 0.1;
+  }
+}
+
+setTimeout(decreaseCooldown, 100)
+
 function updateDropdowns() {
-  if (selClass == undefined) {
+  if (selClass == undefined || updateCooldown !== 0) {
     return;
   }
   var startTime = selClass.startTime
@@ -190,6 +200,7 @@ function updateDropdowns() {
       document.getElementById("start-time-select").options[n].innerHTML = toTime(n) + " - " + toHr(endTime - n)
     }
   }
+  updateCooldown = 0.3
 }
 
 document.getElementById("delete").addEventListener("click", function() {
