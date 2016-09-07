@@ -83,12 +83,15 @@ function reload() {
 
 
 var selectedTimeSlot = undefined;
+var startOpen = false;
 
 document.addEventListener('click', function(e) {
   var id = event.target.id
   if (id.indexOf("timeslot") !== -1) {
     selectedTimeSlot = document.getElementById("timeslot-" + getPeriod(event.target) + "-" + getDay(event.target))
     prepInfo(getDay(event.target), getPeriod(event.target))
+  } else if (id === "start-time-select") {
+    startOpen = !startOpen;
   }
 }, false)
 
@@ -161,8 +164,10 @@ function saveData() {
     selClass.startTime = document.getElementById("start-time-select").selectedIndex;
     selClass.endTime = document.getElementById("end-time-select").selectedIndex + 1;
   }
+  if (!startOpen) {
+    updateDropdowns();
+  }
   //console.log(selClass)
-  updateDropdowns();
   reload()
 }
 
