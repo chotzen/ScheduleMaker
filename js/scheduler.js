@@ -90,9 +90,8 @@ document.addEventListener('click', function(e) {
   if (id.indexOf("timeslot") !== -1) {
     selectedTimeSlot = document.getElementById("timeslot-" + getPeriod(event.target) + "-" + getDay(event.target))
     prepInfo(getDay(event.target), getPeriod(event.target))
-  } else if (id === "start-time-select") {
-    startOpen = !startOpen;
   }
+  updateDropdowns();
 }, false)
 
 function prepInfo(day, period) {
@@ -163,9 +162,6 @@ function saveData() {
     selClass.color = $("#colorpicker-div").colorpicker("getValue")
     selClass.startTime = document.getElementById("start-time-select").selectedIndex;
     selClass.endTime = document.getElementById("end-time-select").selectedIndex + 1;
-  }
-  if (!startOpen) {
-    updateDropdowns();
   }
   //console.log(selClass)
   reload()
