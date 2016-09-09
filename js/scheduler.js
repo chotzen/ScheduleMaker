@@ -7,7 +7,7 @@ var hex = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
 var dayBoxes = new Array(6)
 var classList = [];
 
-setInterval(saveData, 20);
+setInterval(saveData, 10);
 
 var selClass = undefined;
 
@@ -170,6 +170,7 @@ function saveData() {
   reload()
 }
 
+
 function updateDropdowns() {
   if (selClass == undefined) {
     return;
@@ -197,7 +198,6 @@ function updateDropdowns() {
       }
     }
   }, 50)
-
 }
 
 
@@ -415,7 +415,7 @@ function setup() {
     document.getElementById("checkboxes").appendChild(lbl)
   }
 
-
+  updateDropdowns();
 }
 
 $(function() {
