@@ -7,7 +7,7 @@ var hex = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
 var dayBoxes = new Array(6)
 var classList = [];
 
-setInterval(saveData, 100);
+setInterval(saveData, 20);
 
 var selClass = undefined;
 
@@ -91,8 +91,11 @@ document.addEventListener('click', function(e) {
     selectedTimeSlot = document.getElementById("timeslot-" + getPeriod(event.target) + "-" + getDay(event.target))
     prepInfo(getDay(event.target), getPeriod(event.target))
   }
-  updateDropdowns();
+  updateDropdowns()
+
 }, false)
+
+
 
 function prepInfo(day, period) {
   selClass = document.getElementById("timeslot-" + period + "-" + day).class
@@ -167,41 +170,36 @@ function saveData() {
   reload()
 }
 
-var updateCooldown = 0;
-
-function decreaseCooldown() {
-  if (updateCooldown !== 0) {
-    updateCooldown = updateCooldown - 0.1;
-  }
-}
-
-setTimeout(decreaseCooldown, 100)
-
 function updateDropdowns() {
-  if (selClass == undefined || updateCooldown !== 0) {
+  if (selClass == undefined) {
     return;
   }
-  var startTime = selClass.startTime
-  var endTime = selClass.endTime
-  for (var n = 0; n < 32; n++) {
-    if (n < startTime) {
-      document.getElementById("end-time-select").options[n].disabled = true;
-      document.getElementById("end-time-select").options[n].innerHTML = toTime(n)
-    } else {
-      document.getElementById("end-time-select").options[n].disabled = false;
-      document.getElementById("end-time-select").options[n].innerHTML = toTime(n) + " - " + toHr(n - startTime + 1)
-    }
+  setTimeout(function() {
+    console.log("updated dropdown")
+    var startTime = selClass.startTime
+    var endTime = selClass.endTime
+    for (var n = 0; n < 32; n++) {
+      if (n < startTime) {
+        document.getElementById("end-time-select").options[n].disabled = true;
+        document.getElementById("end-time-select").options[n].innerHTML = toTime(n + 2/3)
+      } else {
+        document.getElementById("end-time-select").options[n].disabled = false;
+        document.getElementById("end-time-select").options[n].innerHTML = toTime(n + 2/3) + " - " + toHr(n - startTime + 1)
+      }
 
-    if (n > endTime - 1) {
-      document.getElementById("start-time-select").options[n].disabled = true;
-      document.getElementById("start-time-select").options[n].innerHTML = toTime(n)
-    } else {
-      document.getElementById("start-time-select").options[n].disabled = false;
-      document.getElementById("start-time-select").options[n].innerHTML = toTime(n) + " - " + toHr(endTime - n)
+      if (n > endTime - 1) {
+        document.getElementById("start-time-select").options[n].disabled = true;
+        document.getElementById("start-time-select").options[n].innerHTML = toTime(n)
+      } else {
+
+        document.getElementById("start-time-select").options[n].disabled = false;
+        document.getElementById("start-time-select").options[n].innerHTML = toTime(n) + " - " + toHr(endTime - n)
+      }
     }
-  }
-  updateCooldown = 0.3
+  }, 50)
+
 }
+
 
 document.getElementById("delete").addEventListener("click", function() {
   var index = classList.indexOf(selClass)
@@ -388,6 +386,8 @@ function setup() {
     soption.value = i
     eoption.value = i+1
 
+    soption.addEventListener('click', updateDropdowns)
+    eoption.addEventListener('click', updateDropdowns)
     soption.id = "soption-" + soption.value
     eoption.id = "eoption-" + eoption.value
 
