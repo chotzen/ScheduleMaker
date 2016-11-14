@@ -101,10 +101,6 @@
                 </div>
               </div>
             </form>
-          </div>
-        </div>
-        <div class="panel panel-default">
-          <div class="panel-body">
             <form class="form-horizontal" id="checkboxes">
 
             </form>
@@ -125,16 +121,63 @@
           <div class="panel-body">
             <button id="delete" class="btn btn-warning">Delete</button>
             <button id="reset" class="btn btn-danger">Reset</button>
-            <button id="savePDF" class="btn btn-success">Save as PDF</button>
+            <div class="btn-group dropup">
+              <button id="save" class="btn btn-success dropdown-toggle"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Save <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu">
+                <li><a href="#"id="savePDF">PDF</a></li>
+                <li><a href="#"id="saveData"data-toggle="modal"data-target="#schematic">Schematic</a></li>
+                <li><a href="#"id="googleCal">Google Calendar</a></li>
+              </ul>
+            </div>
+            <button id="reset" class="btn btn-primary" data-toggle="modal"data-target="#load-schematic">Load</button>
           </div>
         </div>
+        <div class="sidebar col-sm-1 hidden-xs">
+          &nbsp;
+        </div>
       </div>
-      <div class="sidebar col-sm-1 hidden-xs">
-        &nbsp;
+  </div>
+
+  <div class="modal fade" id="schematic" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Schematic <small>Save this code to edit your schedule later</small></h4>
+        </div>
+        <div class="modal-body">
+          <code id="schematic-here">...</code>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
       </div>
     </div>
+  </div>
 
-
+  <div class="modal fade" id="load-schematic" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Load Schematic</h4>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <label for="schematc-paste">Schematic Code</label>
+              <textarea id="schematic-paste" class="form-control" rows="10"></textarea>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal" id="submit-schematic-load">Submit</button>
+        </div>
+      </div>
+    </div>
   </div>
 
 

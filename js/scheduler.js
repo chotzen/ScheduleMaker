@@ -78,6 +78,8 @@ function reload() {
       }
     }
   }
+
+  document.getElementById("schematic-here").innerHTML = JSON.stringify(classList);
 }
 
 
@@ -213,7 +215,16 @@ document.getElementById("reset").addEventListener("click", function() {
   setDisabled(true);
 })
 
-document.getElementById("savePDF").addEventListener("click", function() {
+document.getElementById("submit-schematic-load").addEventListener("click", function() {
+  try {
+    classList = JSON.parse(document.getElementById("schematic-paste").value);
+  } catch (error) {
+    $("load-schematic").modal()
+  }
+})
+
+document.getElementById("savePDF").addEventListener("click",
+function() {
   var pdf = new jsPDF('p', 'pt', 'letter');
   // Headers
 
@@ -260,7 +271,6 @@ document.getElementById("savePDF").addEventListener("click", function() {
 
 
   pdf.save('Schedule.pdf')
-
 })
 
 function textBox(fr, fg, fb, x, y, height, width, text, pdf) {
