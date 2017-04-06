@@ -129,7 +129,7 @@
               <ul class="dropdown-menu">
                 <li><a href="#"id="savePDF">PDF</a></li>
                 <li><a href="#"id="saveData"data-toggle="modal"data-target="#schematic">Schematic</a></li>
-                <li><a href="#"id="googleCal">Google Calendar</a></li>
+                <li><a href="#"id="googleCal" onclick="handleAuthClick()">Google Calendar</a></li>
               </ul>
             </div>
             <button id="reset" class="btn btn-primary" data-toggle="modal"data-target="#load-schematic">Load</button>
@@ -180,8 +180,30 @@
     </div>
   </div>
 
+  <div class="modal fade" id="save-gcal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Save to Google Calendar</h4>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <label for="schematc-paste">Schematic Code</label>
+              <textarea id="schematic-paste" class="form-control" rows="10"></textarea>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal" id="submit-schematic-load">Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
 
+  </div>
   <script src="https://code.jquery.com/jquery-3.1.0.min.js"
   integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s="
   crossorigin="anonymous"></script>
@@ -199,6 +221,10 @@
   <script type="text/javascript" src="js/jspdf/split_text_to_size.js">
   </script>
   <script type="text/javascript" src="js/jspdf/standard_fonts_metrics.js">
+  </script>
+  <script type="text/javascript" src="js/googlecalendar.js">
+  </script>
+  <script src="https://apis.google.com/js/client.js?onload=checkAuth">
   </script>
 </body>
 </html
